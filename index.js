@@ -43,7 +43,8 @@ function setPkgURL(name, language){
             url = npm.replace('pkg_name', name);
         } else if(language == 'python'){
             url = pypi.replace('pkg_name', name);
-        }
+        } else 
+            url = "language not supported";
         return url;
     }   
 module.exports = (name,language) => {
