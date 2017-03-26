@@ -1,0 +1,34 @@
+{
+  "name": "pkgstat",
+  "version": "1.0.0",
+  "description": "Search package stats & info on npm, rubygems, pypi",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zuck007/pkgstat.git"
+  },
+  "keywords": [
+    "package search",
+    "package available",
+    "node package",
+    "ruby package",
+    "python package",
+    "pkg info",
+    "pkg status"
+  ],
+  "author": "Pradeep Khileri <pradeepchoudhary009@gmail.com> (https://zuck007.github.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zuck007/pkgstat/issues"
+  },
+  "homepage": "https://github.com/zuck007/pkgstat#readme",
+  "dependencies": {
+    "got": "^6.7.1"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2"
+  }
+}
