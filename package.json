@@ -1,6 +1,6 @@
 {
   "name": "pkgstat",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Search package stats & info on npm, rubygems, pypi",
   "main": "index.js",
   "scripts": {
