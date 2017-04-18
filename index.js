@@ -11,7 +11,7 @@ function extractMetaData (jsonData, language) {
     pkgMeta.description = jsonData.info
     pkgMeta.url = jsonData.project_uri
     pkgMeta.source = jsonData.source_code_uri
-    pkgMeta.license = jsonData.licenses.join(', ')
+    pkgMeta.license = jsonData.licenses ? jsonData.licenses.join(', ') : 'None'
     pkgMeta.version = jsonData.version
   } else if (language === 'python') {
     pkgMeta.name = jsonData.info.name
@@ -51,6 +51,7 @@ module.exports = (name, language) => {
   const headers = {'User-Agent': 'got-node-module'}
   return got(url, {json: true, headers})
             .then(resp => {
+              // console.log(resp)
               return extractMetaData(resp.body, language)
             })
             .catch(err => {
