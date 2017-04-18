@@ -21,14 +21,14 @@ pkgstat("django", "python")
             source: 'https://www.djangoproject.com/',
             license: 'BSD',
             version: '1.11rc1',
-            status: 200 
+            statusCode: 200 
         }
         */
     });
 pkgstat("somePkgWhichDoesNotExist","node")
     .then(resp => {
         console.log(resp);
-        //{status: 404}
+        //{statusCode: 404}
     });
 pkgstat("request","ruby")
     .then(resp => {
@@ -42,7 +42,7 @@ pkgstat("request","ruby")
             source: null,
             license: 'MIT',
             version: '0.0.6',
-            status: 200 
+            statusCode: 200 
         }
         */
     });
