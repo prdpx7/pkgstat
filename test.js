@@ -5,17 +5,17 @@ test('somePkgWhichDoesNotExist in someLanguageWhichDoesNotExist', async t => {
   t.is(data.statusCode, 404)
 })
 
-test('cleanslate pkg in python(pip)', async t => {
+test('cleanslate pkg exists in python(pip)', async t => {
   const data = await pkgstat('cleanslate', 'python')
   t.is(data.author, 'Pradeep Khileri')
 })
 
-test('someXXXRandomXXXPkgName pkg in python(pip)', async t => {
+test('someXXXRandomXXXPkgName pkg does not exists in python(pip)', async t => {
   const data = await pkgstat('someXXXRandomXXXPkgName', 'python')
   t.is(data.statusCode, 404)
 })
 
-test('express pkg does not exists in node(npm)', async t => {
+test('express pkg  exists in node(npm)', async t => {
   const data = await pkgstat('express', 'node')
   t.is(data.statusCode, 200)
 })
@@ -31,7 +31,7 @@ test('tweep pkg in ruby(gem)', async t => {
   t.is(data.statusCode, 200)
 })
 
-test('someXXXRandomXXXPkgName pkg in ruby(gem)', async t => {
+test('someXXXRandomXXXPkgName pkg does not exists in ruby(gem)', async t => {
   const data = await pkgstat('someXXXRandomXXXPkgName', 'ruby')
   t.is(data.statusCode, 404)
 })
