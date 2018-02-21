@@ -2,8 +2,8 @@
 
 > Get metadata of package from node, python and ruby.
 
-[![Build Status](https://travis-ci.org/zuck007/pkgstat.svg?branch=master)](https://travis-ci.org/zuck007/pkgstat) 
-[![MITlicensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/zuck007/pkgstat/master/LICENSE)
+[![Build Status](https://travis-ci.org/prdpx7/pkgstat.svg?branch=master)](https://travis-ci.org/prdpx7/pkgstat) 
+[![MITlicensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/prdpx7/pkgstat/master/LICENSE)
 
 ## Install
 ```

@@ -1,6 +1,6 @@
 {
   "name": "pkgstat",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Search package stats & info on npm, rubygems, pypi",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zuck007/pkgstat.git"
+    "url": "git+https://github.com/prdpx7/pkgstat.git"
   },
   "keywords": [
     "package search",
@@ -19,12 +19,12 @@
     "pkg info",
     "pkg status"
   ],
-  "author": "Pradeep Khileri <pradeepchoudhary009@gmail.com> (https://zuck007.github.io)",
+  "author": "Pradeep Khileri <pradeepchoudhary009@gmail.com> (https://prdpx7.github.io)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zuck007/pkgstat/issues"
+    "url": "https://github.com/prdpx7/pkgstat/issues"
   },
-  "homepage": "https://github.com/zuck007/pkgstat#readme",
+  "homepage": "https://github.com/prdpx7/pkgstat#readme",
   "dependencies": {
     "got": "^6.7.1"
   },
