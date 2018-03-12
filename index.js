@@ -1,10 +1,22 @@
 'use strict'
 const got = require('got')
 const npm = 'https://registry.npmjs.org/pkg_name'
+const npmdlCountApi = 'https://api.npmjs.org/downloads/range/'
 const pypi = 'https://pypi.python.org/pypi/pkg_name/json'
 const rubygems = 'https://rubygems.org/api/v1/gems/pkg_name.json'
-function extractMetaData (jsonData, language) {
+
+function lastThirtyDays () {
+  var milliseconds = 30 * 24 * 60 * 60 * 1000
+  var startDate = new Date(Date.now() - milliseconds)
+  var endDate = new Date(Date.now())
+  return {
+    'start': startDate.toISOString().substr(0, 10),
+    'end': endDate.toISOString().substr(0, 10)
+  }
+}
+function extractMetaData (jsonData, language, totalDownloadsLastMonth, error) {
   var pkgMeta = {}
+
   if (language === 'ruby') {
     pkgMeta.name = jsonData.name
     pkgMeta.author = jsonData.authors
@@ -30,6 +42,7 @@ function extractMetaData (jsonData, language) {
     pkgMeta.url = 'https://www.npmjs.com/package/' + jsonData.name
     pkgMeta.source = jsonData.repository ? jsonData.repository.url : 'Unknown'
     pkgMeta.license = jsonData.license || 'Unknown'
+    pkgMeta.totalDownloadsLastMonth = totalDownloadsLastMonth || 'NA'
   }
   pkgMeta.statusCode = 200
   return pkgMeta
@@ -46,13 +59,34 @@ function setPkgURL (name, language) {
   } else { url = 'http://example.com/404' }
   return url
 }
+function calculateDownloadCounts (pkgName, respMetadata) {
+  const dates = lastThirtyDays()
+  const headers = {'User-Agent': 'got-node-module'}
+  const url = npmdlCountApi + `${dates.start}:${dates.end}/${pkgName}`
+  return got(url, {json: true, headers})
+          .then(resp => {
+            var arrDownloads = resp.body.downloads
+            var totalDownloadsLastMonth = arrDownloads.reduce((x, y) => {
+              return {downloads: x.downloads + y.downloads}
+            })
+            return extractMetaData(respMetadata, 'node', totalDownloadsLastMonth.downloads)
+          })
+          .catch(err => {
+            // console.log(err)
+            return extractMetaData(respMetadata, 'node', 'NA', err)
+          })
+}
 module.exports = (name, language) => {
   const url = setPkgURL(name, language)
   const headers = {'User-Agent': 'got-node-module'}
   return got(url, {json: true, headers})
             .then(resp => {
               // console.log(resp)
-              return extractMetaData(resp.body, language)
+              if (language === 'node') {
+                return calculateDownloadCounts(name, resp.body)
+              } else {
+                return extractMetaData(resp.body, language)
+              }
             })
             .catch(err => {
               // console.log(err)
